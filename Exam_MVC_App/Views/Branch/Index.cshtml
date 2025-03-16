@@ -1,0 +1,46 @@
+﻿@model List<Branch>
+
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+
+<div class="container">
+    <h1>
+        All Branches
+    </h1>
+
+    <table class="table table-light table-hover">
+        <thead>
+            <th>#</th>
+            <th>Name</th>
+            <th>Manager</th>
+            <th>Actions</th>
+        </thead>    
+
+        <tbody>
+            @foreach (var branch in Model)
+            {
+                <tr>
+                    <td>@branch.Id</td>
+                    <td>@branch.Name</td>
+                    <td>@branch.Manager.Fname @branch.Manager.Lname</td>
+                    <td>
+                        <a href="/Branch/Edit/@branch.Id" class="btn btn-secondary">Edit</a>
+                        <a href="/Branch/Delete/@branch.Id"
+                           class="btn btn-danger"
+                           onclick="return confirm('Are you sure you want to delete this branch?');">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

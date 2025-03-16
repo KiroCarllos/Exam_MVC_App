@@ -1,7 +1,22 @@
+using Exam_MVC_App.Data;
+using Exam_MVC_App.Services.BranchServices;
+using Exam_MVC_App.Services.InstructorServices;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+
+builder.Services.AddDbContext<AppDBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IAppDBContextProcedures, AppDBContextProcedures>();
+builder.Services.AddScoped<IBranchService, BranchService>();
+builder.Services.AddScoped<IInstructorServices, InstructorServices>();
+
+
 
 var app = builder.Build();
 
