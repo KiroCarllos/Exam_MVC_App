@@ -39,7 +39,7 @@
 
         .b-example-vr {
             flex-shrink: 0;
-            width: 1.5rem;
+            width: 0.5rem;
             height: 100vh;
         }
 
@@ -95,7 +95,7 @@
     @if (IsSectionDefined("Styles"))
     {
         @RenderSection("Styles", required: true)
-    })
+    }
 </head>
 
 <body>
@@ -265,7 +265,7 @@
     @if (IsSectionDefined("Scripts"))
     {
         @RenderSection("Scripts", required: true)
-    })
+    }
 </body>
 
 </html>
