@@ -4,6 +4,7 @@ namespace Exam_MVC_App.Services.BranchServices
 {
     public interface IBranchService
     {
+        Task<int> createBranch(Branch branchRequest);
         List<Branch> GetBranches();
         Branch? GetBranchById(byte Id);
         Task<int> UpdateBranchAsync(byte Id, Branch branchRequest);

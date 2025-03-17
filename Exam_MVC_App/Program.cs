@@ -1,6 +1,7 @@
 using Exam_MVC_App.Data;
 using Exam_MVC_App.Services.BranchServices;
 using Exam_MVC_App.Services.InstructorServices;
+using Exam_MVC_App.Services.TrackServices;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,8 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 builder.Services.AddScoped<IAppDBContextProcedures, AppDBContextProcedures>();
 builder.Services.AddScoped<IBranchService, BranchService>();
 builder.Services.AddScoped<IInstructorServices, InstructorServices>();
+builder.Services.AddScoped<AppDBContextProcedures>();
+builder.Services.AddScoped<ITrackServices, TrackServices>();
 
 
 

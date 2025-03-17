@@ -416,7 +416,7 @@ namespace Exam_MVC_App.Data
                 new SqlParameter
                 {
                     ParameterName = "b_name",
-                    Size = 1,
+                    Size = -1,
                     Value = b_name ?? Convert.DBNull,
                     SqlDbType = System.Data.SqlDbType.VarChar,
                 },
@@ -449,7 +449,7 @@ namespace Exam_MVC_App.Data
                 new SqlParameter
                 {
                     ParameterName = "c_name",
-                    Size = 1,
+                    Size = -1,
                     Value = c_name ?? Convert.DBNull,
                     SqlDbType = System.Data.SqlDbType.VarChar,
                 },
@@ -520,7 +520,7 @@ namespace Exam_MVC_App.Data
                 new SqlParameter
                 {
                     ParameterName = "t_name",
-                    Size = 1,
+                    Size = -1,
                     Value = t_name ?? Convert.DBNull,
                     SqlDbType = System.Data.SqlDbType.VarChar,
                 },
@@ -1950,7 +1950,7 @@ namespace Exam_MVC_App.Data
                 new SqlParameter
                 {
                     ParameterName = "b_name",
-                    Size = -1,
+                    Size = 20,
                     Value = b_name ?? Convert.DBNull,
                     SqlDbType = System.Data.SqlDbType.VarChar,
                 },
@@ -1989,7 +1989,7 @@ namespace Exam_MVC_App.Data
                 new SqlParameter
                 {
                     ParameterName = "c_name",
-                    Size = 1,
+                    Size = -1,
                     Value = c_name ?? Convert.DBNull,
                     SqlDbType = System.Data.SqlDbType.VarChar,
                 },
@@ -2171,7 +2171,7 @@ namespace Exam_MVC_App.Data
                 new SqlParameter
                 {
                     ParameterName = "t_name",
-                    Size = 1,
+                    Size = -1,
                     Value = t_name ?? Convert.DBNull,
                     SqlDbType = System.Data.SqlDbType.VarChar,
                 },

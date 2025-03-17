@@ -13,6 +13,8 @@
     <h1>
         All Branches
     </h1>
+    <a href="/Branch/Create/" class="btn btn-secondary">Create Branch</a>
+
 
     <table class="table table-light table-hover">
         <thead>
@@ -28,7 +30,9 @@
                 <tr>
                     <td>@branch.Id</td>
                     <td>@branch.Name</td>
-                    <td>@branch.Manager.Fname @branch.Manager.Lname</td>
+                    <td>
+                        @(branch.Manager != null ? $"{branch.Manager.Fname} {branch.Manager.Lname}" : "No Manager Assigned")
+                    </td>
                     <td>
                         <a href="/Branch/Edit/@branch.Id" class="btn btn-secondary">Edit</a>
                         <a href="/Branch/Delete/@branch.Id"

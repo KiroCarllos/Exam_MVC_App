@@ -3,6 +3,7 @@ using Exam_MVC_App.Models;
 using Exam_MVC_App.Services.BranchServices;
 using Exam_MVC_App.Services.InstructorServices;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Exam_MVC_App.Controllers
 {
@@ -31,6 +32,21 @@ namespace Exam_MVC_App.Controllers
         {
             var result =await _branchServices.DeleteBranchAsync(Id);
             TempData["Message"] = result == 1 ? "Branch Deleted Successfully" : "Branch Not Deleted";
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            ViewBag.Managers = _instructorService.getAllInstructors();
+            return View();
+        }
+        [HttpPost]
+        [Route("Branch/CreateNewBranch")]
+        public async Task<IActionResult> CreateNewBranch(Branch branchRequest)
+        {
+           
+            var result = await _branchServices.createBranch(branchRequest);
+            TempData["Message"] = result == 1 ? "Branch created Successfully" : "cant create";
             return RedirectToAction("Index");
         }
     }
