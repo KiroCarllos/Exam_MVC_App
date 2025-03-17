@@ -1,4 +1,6 @@
-﻿using Exam_MVC_App.Data;
+﻿using AutoMapper;
+using Exam_MVC_App.Data;
+using Exam_MVC_App.Dtos.BranchDtos;
 using Exam_MVC_App.Models;
 using Exam_MVC_App.Services.BranchServices;
 using Exam_MVC_App.Services.InstructorServices;
@@ -16,11 +18,11 @@ namespace Exam_MVC_App.Controllers
         public IActionResult Edit(byte Id)
         {
             ViewBag.Managers = _instructorService.getAllInstructors();
-            return View(_branchServices.GetBranchById(Id));
+            return View(_branchServices.GetEditBranche(Id));
         }
         [HttpPost]
         [Route("Branch/Update/{Id}")]
-        public async Task<IActionResult> Update(byte Id,Branch branchRequest)
+        public async Task<IActionResult> Update(byte Id, BranchEditDto branchRequest)
         {
             var result = await _branchServices.UpdateBranchAsync(Id, branchRequest);
             TempData["Message"] = result == 1 ? "Branch Updated Successfully" : "Branch Not Updated";
