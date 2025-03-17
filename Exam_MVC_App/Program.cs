@@ -1,5 +1,6 @@
 using Exam_MVC_App.Data;
 using Exam_MVC_App.Services.BranchServices;
+using Exam_MVC_App.Services.CourseServices;
 using Exam_MVC_App.Services.InstructorServices;
 using Exam_MVC_App.Services.TrackServices;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ builder.Services.AddScoped<IBranchService, BranchService>();
 builder.Services.AddScoped<IInstructorServices, InstructorServices>();
 builder.Services.AddScoped<AppDBContextProcedures>();
 builder.Services.AddScoped<ITrackServices, TrackServices>();
+builder.Services.AddScoped<ICourseServices, CourseServices>();
 
 
 

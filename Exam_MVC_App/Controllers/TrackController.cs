@@ -55,7 +55,7 @@ namespace Exam_MVC_App.Controllers
         {
 
             var result = await _trackservices.createTrack(trackRequest);
-            TempData["Message"] = result == 1 ? "Branch created Successfully" : "cant create";
+            TempData["Message"] = result == 1 ? "Track created Successfully" : "cant create";
             return RedirectToAction("Index");
         }
     }
