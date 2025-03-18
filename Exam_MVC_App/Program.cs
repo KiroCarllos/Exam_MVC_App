@@ -7,6 +7,7 @@ using Exam_MVC_App.Services.InstructorServices;
 using Exam_MVC_App.Services.QuestionChoiseServies;
 using Exam_MVC_App.Services.QuestionRightAnswerServices;
 using Exam_MVC_App.Services.QuestionsServices;
+using Exam_MVC_App.Services.TrackServices;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,7 @@ builder.Services.AddScoped<IQuestionsServise, QuestionsService>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 builder.Services.AddScoped<IQusestionChoiseServece, QusestionChoiseServie>();
 builder.Services.AddScoped<IQuestionRightAnswerservice, QuestionRightAnswerService>();
+builder.Services.AddScoped<ITrackServices, TrackServices>();
 
 
 

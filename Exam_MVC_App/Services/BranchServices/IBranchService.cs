@@ -9,6 +9,7 @@ namespace Exam_MVC_App.Services.BranchServices
         BranchDto? GetBranchById(byte Id);
         BranchEditDto? GetEditBranche(byte Id);
         Task<int> UpdateBranchAsync(byte Id, BranchEditDto branchRequest);  
+        Task<int> createBranch(Branch branchRequest);
         Task<int> DeleteBranchAsync(byte Id);
     }
 }

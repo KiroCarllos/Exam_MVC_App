@@ -1,0 +1,38 @@
+﻿@model Track
+
+
+<h1>Create Track</h1>
+
+<form method="POST" action="/Track/CreateNewTrack">
+    <div class="form-horizontal">
+        <h4>Track</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Hours" class="control-label"></label>
+            <input asp-for="Hours" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Mng_Id">Manager</label>
+            <select asp-for="Mng_Id" class="form-control">
+                @if (ViewBag.Managers != null)
+                {
+                    @foreach (var manager in ViewBag.Managers)
+                    {
+                        <option value="@manager.Id" selected="@(manager.Id == Model?.Mng_Id ? "selected" : null)">
+                            @manager.Fname @manager.Lname
+                        </option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+    </div>
+</form>

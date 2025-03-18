@@ -1,0 +1,52 @@
+﻿@model List<Track>
+
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+
+<div class="container">
+    <h1>
+        All Tracks
+    </h1>
+    <a href="/Track/Create/" class="btn btn-secondary">Create Track</a>
+
+
+    <table class="table table-light table-hover">
+        <thead>
+        <th>#</th>
+        <th>Name</th>
+        <th>Hours</th>
+        <th>Manager</th>
+        <th>Actions</th>
+        </thead>
+
+        <tbody>
+            @foreach (var track in Model)
+            {
+                <tr>
+                    <td>@track.Id</td>
+                    <td>@track.Name</td>
+                    <td>@track.Hours</td>
+                    <td>
+                        @(track.Mng != null ? $"{track.Mng.Fname} {track.Mng.Lname}" : "No Manager Assigned")
+                    </td>
+                    <td>
+                        <a href="/Track/Edit/@track.Id" class="btn btn-secondary">Edit</a>
+                        <a href="/Track/Delete/@track.Id"
+                           class="btn btn-danger"
+                           onclick="return confirm('Are you sure you want to delete this track?');">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

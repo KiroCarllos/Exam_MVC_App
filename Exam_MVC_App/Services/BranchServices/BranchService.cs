@@ -8,6 +8,10 @@ namespace Exam_MVC_App.Services.BranchServices
 {
     public class BranchService(AppDBContext _db, IAppDBContextProcedures _sp,IMapper _mapper) : IBranchService
     {
+        public Task<int> createBranch(Branch branchRequest)
+        {
+            return _sp.sp_createbranchAsync(branchRequest.Name,branchRequest.Mng_Id);
+        }
         public Task<int> DeleteBranchAsync(byte Id)
         {
             return _sp.sp_deletebranchAsync(Id);
