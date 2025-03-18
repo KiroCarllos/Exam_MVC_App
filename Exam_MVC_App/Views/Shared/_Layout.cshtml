@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
-
 <head>
     <script src="~/admin_theme/js/color-modes.js"></script>
     <link rel="shortcut icon" href="~/admin_theme/img/favicon.ico" type="image/x-icon">
@@ -22,9 +21,12 @@
         }
 
         media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
+            .bd-placeholder-img-lg
+
+        {
+            font-size: 3.5rem;
+        }
+
         }
 
         .b-example-divider {
@@ -33,8 +35,7 @@
             background-color: rgba(0, 0, 0, 0.1);
             border: solid rgba(0, 0, 0, 0.15);
             border-width: 1px 0;
-            box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
-                inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+            box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1), inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
         }
 
         .b-example-vr {
@@ -55,21 +56,20 @@
             overflow-y: hidden;
         }
 
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
+            .nav-scroller .nav {
+                display: flex;
+                flex-wrap: nowrap;
+                padding-bottom: 1rem;
+                margin-top: -1px;
+                overflow-x: auto;
+                text-align: center;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
 
         .btn-bd-primary {
             --bd-violet-bg: #712cf9;
             --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
             --bs-btn-font-weight: 600;
             --bs-btn-color: var(--bs-white);
             --bs-btn-bg: var(--bd-violet-bg);
@@ -188,7 +188,7 @@
                 <span class="fs-4 sidebar-text">ITI</span>
             </a>
             <hr />
-            
+
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
                     @* @if () { } else { } *@
@@ -201,7 +201,7 @@
                 </li>
 
                 <li>
-                    <a href="/Branch/Index" 
+                    <a href="/Branch/Index"
                        class="nav-link @(Context.Request.Path.ToString().Contains("/Branch", StringComparison.OrdinalIgnoreCase) ? "active" : "text-white")">
                         <svg class="bi pe-none me-2" width="16" height="16">
                             <use xlink:href="#people-circle" />
@@ -217,7 +217,7 @@
                         <span class="sidebar-text"> Instructor </span>
                     </a>
                 </li>
-              
+
                 <li>
                     <a href="/Questions/Index" class="nav-link @(Context.Request.Path == "/Question/index" ? "active" : "text-white")">
                         <svg class="bi pe-none me-2" width="16" height="16">
