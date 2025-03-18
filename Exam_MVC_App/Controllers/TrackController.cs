@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Exam_MVC_App.Controllers
 {
-    public class TrackController(ITrackServices _trackservices , IInstructorServices _instructorService) : Controller
+    public class TrackController(ITrackServices _trackservices , IInstructorService _instructorService) : Controller
     {
         public IActionResult Index()
         {
