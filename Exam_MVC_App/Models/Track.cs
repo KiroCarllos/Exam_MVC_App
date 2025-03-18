@@ -23,7 +23,7 @@ public partial class Track
     public int Mng_Id { get; set; }
 
     [InverseProperty("Track")]
-    public virtual ICollection<Instructor_Detial> Instructor_Detials { get; set; } = new List<Instructor_Detial>();
+    public virtual ICollection<Instructor_Detials> Instructor_Detials { get; set; } = new List<Instructor_Detials>();
 
     [ForeignKey("Mng_Id")]
     [InverseProperty("Tracks")]

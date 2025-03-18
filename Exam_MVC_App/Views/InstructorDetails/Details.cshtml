@@ -1,0 +1,45 @@
+﻿@model Instructor_Detials
+
+@{
+    ViewData["Title"] = "Instructor Details";
+}
+
+<div class="container mt-4">
+    <h2>Instructor Details</h2>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Message"]
+        </div>
+    }
+
+    <div class="card p-3">
+        <h4>@Model.User.Fname @Model.User.Lname</h4>
+        <p><strong>Role:</strong> @Model.User.Role</p>
+        <p><strong>Phone:</strong> @Model.User.Phone</p>
+        <p><strong>Email:</strong> @Model.User.Email</p>
+        <p><strong>Gender:</strong> @Model.User.Gender</p>
+        <p>
+            <strong>Age:</strong>
+            @(Model.User.DateOfBirth != null ?
+                (DateTime.Now.Year - Model.User.DateOfBirth.Value.Year -
+                (DateTime.Now.DayOfYear < Model.User.DateOfBirth.Value.DayOfYear ? 1 : 0))
+                : "N/A")
+        </p>
+        <p><strong>Status:</strong> @Model.User.Status</p>
+        <p><strong>Salary:</strong> @Model.User.Salary</p>
+        <p><strong>Branch:</strong> @(Model.User.Branch != null ? Model.User.Branch.Name : "No Branch")</p>
+        <p><strong>Track:</strong> @Model.Track.Name</p>
+        <p><strong>Course:</strong> @Model.Course.Name</p>
+
+        <div class="mt-3">
+            <a href="@Url.Action("Delete", "InstructorDetails", new { Id = Model.Id })"
+               class="btn btn-danger"
+               onclick="return confirm('Are you sure you want to delete this instructor?');">
+                Delete
+            </a>
+            <a href="@Url.Action("Index", "InstructorDetails")" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
+</div>

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Exam_MVC_App.Controllers
 {
-    public class BranchController(IBranchService _branchServices,IInstructorServices _instructorService) : Controller
+    public class BranchController(IBranchService _branchServices,IInstructorService _instructorService) : Controller
     {
         public IActionResult Index()
         {

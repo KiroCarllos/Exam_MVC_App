@@ -122,43 +122,87 @@ namespace Exam_MVC_App.Data
             return _;
         }
 
-        public virtual async Task<List<sp_AddInstructor_DetailsResult>> sp_AddInstructor_DetailsAsync(int? user_id, byte? track_id, int? course_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        //public virtual async Task<List<sp_AddInstructor_DetailsResult>> sp_AddInstructor_DetailsAsync(int? user_id, byte? track_id, int? course_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        //{
+        //    var parameterreturnValue = new SqlParameter
+        //    {
+        //        ParameterName = "returnValue",
+        //        Direction = System.Data.ParameterDirection.Output,
+        //        SqlDbType = System.Data.SqlDbType.Int,
+        //    };
+
+        //    var sqlParameters = new []
+        //    {
+        //        new SqlParameter
+        //        {
+        //            ParameterName = "user_id",
+        //            Value = user_id ?? Convert.DBNull,
+        //            SqlDbType = System.Data.SqlDbType.Int,
+        //        },
+        //        new SqlParameter
+        //        {
+        //            ParameterName = "track_id",
+        //            Value = track_id ?? Convert.DBNull,
+        //            SqlDbType = System.Data.SqlDbType.TinyInt,
+        //        },
+        //        new SqlParameter
+        //        {
+        //            ParameterName = "Course_id",
+        //            Value = course_id ?? Convert.DBNull,
+        //            SqlDbType = System.Data.SqlDbType.Int,
+        //        },
+        //        parameterreturnValue,
+        //    };
+        //    var _ = await _context.SqlQueryAsync<sp_AddInstructor_DetailsResult>("EXEC @returnValue = [dbo].[sp_AddInstructor_Details] @user_id = @user_id, @track_id = @track_id, @Course_id = @Course_id", sqlParameters, cancellationToken);
+
+        //    returnValue?.SetValue(parameterreturnValue.Value);
+
+        //    return _;
+        //}
+
+        public virtual async Task<int> sp_AddInstructor_DetailsAsync(int? user_id, byte? track_id, int? course_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
         {
-            var parameterreturnValue = new SqlParameter
+            var parameterReturnValue = new SqlParameter
             {
                 ParameterName = "returnValue",
                 Direction = System.Data.ParameterDirection.Output,
                 SqlDbType = System.Data.SqlDbType.Int,
             };
 
-            var sqlParameters = new []
+            var sqlParameters = new[]
             {
-                new SqlParameter
-                {
-                    ParameterName = "user_id",
-                    Value = user_id ?? Convert.DBNull,
-                    SqlDbType = System.Data.SqlDbType.Int,
-                },
-                new SqlParameter
-                {
-                    ParameterName = "track_id",
-                    Value = track_id ?? Convert.DBNull,
-                    SqlDbType = System.Data.SqlDbType.TinyInt,
-                },
-                new SqlParameter
-                {
-                    ParameterName = "Course_id",
-                    Value = course_id ?? Convert.DBNull,
-                    SqlDbType = System.Data.SqlDbType.Int,
-                },
-                parameterreturnValue,
-            };
-            var _ = await _context.SqlQueryAsync<sp_AddInstructor_DetailsResult>("EXEC @returnValue = [dbo].[sp_AddInstructor_Details] @user_id = @user_id, @track_id = @track_id, @Course_id = @Course_id", sqlParameters, cancellationToken);
+        new SqlParameter
+        {
+            ParameterName = "user_id",
+            Value = (object?)user_id ?? DBNull.Value,
+            SqlDbType = System.Data.SqlDbType.Int,
+        },
+        new SqlParameter
+        {
+            ParameterName = "track_id",
+            Value = (object?)track_id ?? DBNull.Value,
+            SqlDbType = System.Data.SqlDbType.TinyInt,
+        },
+        new SqlParameter
+        {
+            ParameterName = "Course_id",
+            Value = (object?)course_id ?? DBNull.Value,
+            SqlDbType = System.Data.SqlDbType.Int,
+        },
+        parameterReturnValue,
+    };
 
-            returnValue?.SetValue(parameterreturnValue.Value);
+            await _context.Database.ExecuteSqlRawAsync(
+                "EXEC @returnValue = [dbo].[sp_AddInstructor_Details] @user_id = @user_id, @track_id = @track_id, @Course_id = @Course_id",
+                sqlParameters,
+                cancellationToken
+            );
 
-            return _;
+            returnValue?.SetValue(parameterReturnValue.Value);
+
+            return (int)(parameterReturnValue.Value ?? 0);
         }
+
 
         public virtual async Task<int> sp_AddInstructor_DetialsAsync(int? id, int? user_id, byte? track_id, int? course_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
         {
@@ -274,7 +318,7 @@ namespace Exam_MVC_App.Data
             return _;
         }
 
-        public virtual async Task<int> sp_AddUserRowAsync(int? id, string fname, string lname, string role, string phone, string email, string pass, string gender, DateOnly? dateofBirth, string satus, decimal? salary, byte? branch, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        public virtual async Task<int> sp_AddUserRowAsync( string fname, string lname, string role, string phone, string email, string pass, string gender, DateOnly? dateofBirth, string satus, decimal? salary, byte? branch, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
         {
             var parameterreturnValue = new SqlParameter
             {
@@ -285,12 +329,7 @@ namespace Exam_MVC_App.Data
 
             var sqlParameters = new []
             {
-                new SqlParameter
-                {
-                    ParameterName = "id",
-                    Value = id ?? Convert.DBNull,
-                    SqlDbType = System.Data.SqlDbType.Int,
-                },
+                
                 new SqlParameter
                 {
                     ParameterName = "fname",
@@ -369,7 +408,7 @@ namespace Exam_MVC_App.Data
                 },
                 parameterreturnValue,
             };
-            var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[sp_AddUserRow] @id = @id, @fname = @fname, @Lname = @Lname, @Role = @Role, @phone = @phone, @email = @email, @pass = @pass, @gender = @gender, @DateofBirth = @DateofBirth, @satus = @satus, @salary = @salary, @branch = @branch", sqlParameters, cancellationToken);
+            var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[sp_AddUserRow]  @fname = @fname, @Lname = @Lname, @Role = @Role, @phone = @phone, @email = @email, @pass = @pass, @gender = @gender, @DateofBirth = @DateofBirth, @satus = @satus, @salary = @salary, @branch = @branch", sqlParameters, cancellationToken);
 
             returnValue?.SetValue(parameterreturnValue.Value);
 
@@ -617,31 +656,63 @@ namespace Exam_MVC_App.Data
             return _;
         }
 
-        public virtual async Task<List<sp_Delete_Instructor_DetailsResult>> sp_Delete_Instructor_DetailsAsync(int? id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        //public virtual async Task<List<sp_Delete_Instructor_DetailsResult>> sp_Delete_Instructor_DetailsAsync(int? id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        //{
+        //    var parameterreturnValue = new SqlParameter
+        //    {
+        //        ParameterName = "returnValue",
+        //        Direction = System.Data.ParameterDirection.Output,
+        //        SqlDbType = System.Data.SqlDbType.Int,
+        //    };
+
+        //    var sqlParameters = new []
+        //    {
+        //        new SqlParameter
+        //        {
+        //            ParameterName = "id",
+        //            Value = id ?? Convert.DBNull,
+        //            SqlDbType = System.Data.SqlDbType.Int,
+        //        },
+        //        parameterreturnValue,
+        //    };
+        //    var _ = await _context.SqlQueryAsync<sp_Delete_Instructor_DetailsResult>("EXEC @returnValue = [dbo].[sp_Delete_Instructor_Details] @id = @id", sqlParameters, cancellationToken);
+
+        //    returnValue?.SetValue(parameterreturnValue.Value);
+
+        //    return _;
+        //}
+
+        public virtual async Task<int> sp_Delete_Instructor_DetailsAsync(int? id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
         {
-            var parameterreturnValue = new SqlParameter
+            var parameterReturnValue = new SqlParameter
             {
                 ParameterName = "returnValue",
                 Direction = System.Data.ParameterDirection.Output,
                 SqlDbType = System.Data.SqlDbType.Int,
             };
 
-            var sqlParameters = new []
+            var sqlParameters = new[]
             {
-                new SqlParameter
-                {
-                    ParameterName = "id",
-                    Value = id ?? Convert.DBNull,
-                    SqlDbType = System.Data.SqlDbType.Int,
-                },
-                parameterreturnValue,
-            };
-            var _ = await _context.SqlQueryAsync<sp_Delete_Instructor_DetailsResult>("EXEC @returnValue = [dbo].[sp_Delete_Instructor_Details] @id = @id", sqlParameters, cancellationToken);
+        new SqlParameter
+        {
+            ParameterName = "id",
+            Value = (object?)id ?? DBNull.Value,
+            SqlDbType = System.Data.SqlDbType.Int,
+        },
+        parameterReturnValue,
+    };
 
-            returnValue?.SetValue(parameterreturnValue.Value);
+            var _ = await _context.Database.ExecuteSqlRawAsync(
+                "EXEC @returnValue = [dbo].[sp_Delete_Instructor_Details] @id = @id",
+                sqlParameters,
+                cancellationToken
+            );
 
-            return _;
+            returnValue?.SetValue(parameterReturnValue.Value);
+
+            return (int)(parameterReturnValue.Value ?? 0);
         }
+
 
         public virtual async Task<int> sp_delete_student_answerAsync(int? userId, int? examquestionId, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
         {

@@ -15,11 +15,11 @@ namespace Exam_MVC_App.Data
     {
         Task<int> sp_add_choiceAsync(string choice, string c_type, int? question_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_add_student_answerAsync(string answer, int? userId, int? examquestionId, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
-        Task<List<sp_AddInstructor_DetailsResult>> sp_AddInstructor_DetailsAsync(int? user_id, byte? track_id, int? course_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
+        Task<int>sp_AddInstructor_DetailsAsync(int? user_id, byte? track_id, int? course_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_AddInstructor_DetialsAsync(int? id, int? user_id, byte? track_id, int? course_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_AddStudent_DetailsAsync(int? user_id, byte? track_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_AddStudent_DetialsAsync(int? id, int? user_id, byte? track_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
-        Task<int> sp_AddUserRowAsync(int? id, string fname, string lname, string role, string phone, string email, string pass, string gender, DateOnly? dateofBirth, string satus, decimal? salary, byte? branch, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
+        Task<int> sp_AddUserRowAsync( string fname, string lname, string role, string phone, string email, string pass, string gender, DateOnly? dateofBirth, string satus, decimal? salary, byte? branch, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<List<sp_correct_examResult>> sp_correct_examAsync(int? examid, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_createbranchAsync(string b_name, int? b_mg_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_createcourceAsync(string c_name, byte? c_hours, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
@@ -28,7 +28,7 @@ namespace Exam_MVC_App.Data
         Task<int> sp_delete_choiceAsync(int? id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_delete_examAsync(int? id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_delete_exam_questionAsync(int? id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
-        Task<List<sp_Delete_Instructor_DetailsResult>> sp_Delete_Instructor_DetailsAsync(int? id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
+        Task<int> sp_Delete_Instructor_DetailsAsync(int? id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_delete_student_answerAsync(int? userId, int? examquestionId, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<List<sp_Delete_Student_DetailsResult>> sp_Delete_Student_DetailsAsync(int? id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_deletebranchAsync(byte? b_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
