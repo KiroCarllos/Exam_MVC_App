@@ -219,14 +219,30 @@
                 </li>
               
                 <li>
-                    <a href="/Home/Profile" class="nav-link @(Context.Request.Path == "/Home/Profile" ? "active" : "text-white")">
+                    <a href="/Questions/Index" class="nav-link @(Context.Request.Path == "/Question/index" ? "active" : "text-white")">
                         <svg class="bi pe-none me-2" width="16" height="16">
                             <use xlink:href="#people-circle" />
                         </svg>
-                        <span class="sidebar-text"> Profile </span>
+                        <span class="sidebar-text"> Questions </span>
                     </a>
                 </li>
 
+                <li>
+                    <a href="/QusestionChoise/Index" class="nav-link @(Context.Request.Path == "/QusestionChoise/Index" ? "active" : "text-white")">
+                        <svg class="bi pe-none me-2" width="16" height="16">
+                            <use xlink:href="#people-circle" />
+                        </svg>
+                        <span class="sidebar-text"> QusestionChoise </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/QuestionRightAnswer/Index" class="nav-link @(Context.Request.Path == "/QuestionRightAnswer/Index" ? "active" : "text-white")">
+                        <svg class="bi pe-none me-2" width="16" height="16">
+                            <use xlink:href="#people-circle" />
+                        </svg>
+                        <span class="sidebar-text"> Question Right Answer </span>
+                    </a>
+                </li>
             </ul>
             <hr />
             <div class="dropdown">

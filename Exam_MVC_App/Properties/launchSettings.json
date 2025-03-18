@@ -45,6 +45,15 @@
         "ASPNETCORE_ENVIRONMENT": "AsmaaMohamed"
       }
     },
+    "Nour": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:5182",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Nour"
+      }
+    },
     "https": {
       "commandName": "Project",
       "dotnetRunMessages": true,

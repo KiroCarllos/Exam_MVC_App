@@ -1,0 +1,55 @@
+﻿@model Exam_MVC_App.Models.Question_Right_Answer 
+
+
+@if (Model != null)
+{
+
+
+    ViewData["Title"] = "Edit Right_Answer";
+
+    <h1>Edit Right Answer </h1>
+    <form method="POST" action="/QuestionRightAnswer/Update/@Model">
+        <input type="hidden" name="_method" value="PUT" />
+        <div class="form-group">
+            <label asp-for="Right_Answer">Answer </label>
+            <input asp-for="Right_Answer" value="@Model.Right_Answer" class="form-control" />
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="Question_Id">quetion</label>
+            <select asp-for="Question_Id" class="form-control">
+                @foreach (var Question in ViewBag.Question)
+                {
+                    <option value="@Question.Id" selected="@(Question.Id==Model.Question_Id ? "selected" : null)">
+                        @Question.Name
+                    </option>
+                }
+            </select>
+        </div>
+
+
+
+        <br />
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+}
+else
+{
+    <h1>Branch not found</h1>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

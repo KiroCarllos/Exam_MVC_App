@@ -1,4 +1,5 @@
-﻿@model  Branch
+﻿@model Exam_MVC_App.Dtos.BranchDtos.BranchEditDto
+
 
 @if(Model != null)
 {
@@ -7,21 +8,19 @@
  ViewData["Title"] = "Edit Branch";
 
 <h1>Edit Branch</h1>
-<form method="POST" action="/Branch/Update/@Model.Id">
+<form method="POST" action="/Branch/Update/@Model.BranchId">
     <input type="hidden" name="_method" value="PUT" /> 
-    <input type="hidden" asp-for="Id" value="@Model.Id" class="form-control" />
-
     <div class="form-group">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
+            <label asp-for="BranchName">Branch Name</label>
+            <input asp-for="BranchName" value="@Model.BranchName" class="form-control" />
     </div>
 
     <div class="form-group">
-        <label asp-for="Mng_Id">Manager</label>
-        <select asp-for="Mng_Id" class="form-control">
+            <label asp-for="ManagetId">Manager</label>
+            <select asp-for="ManagetId" class="form-control">
             @foreach (var manager in ViewBag.Managers)
             {
-                <option value="@manager.Id" selected="@(manager.Id==Model.Mng_Id ? "selected" : null)">
+                <option value="@manager.Id" selected="@(manager.Id==Model.ManagetId ? "selected" : null)">
                     @manager.Fname @manager.Lname
                 </option>
             }

@@ -1,12 +1,14 @@
-﻿using Exam_MVC_App.Models;
+﻿using Exam_MVC_App.Dtos.BranchDtos;
+using Exam_MVC_App.Models;
 
 namespace Exam_MVC_App.Services.BranchServices
 {
     public interface IBranchService
     {
-        List<Branch> GetBranches();
-        Branch? GetBranchById(byte Id);
-        Task<int> UpdateBranchAsync(byte Id, Branch branchRequest);
+        List<BranchDto> GetBranches();
+        BranchDto? GetBranchById(byte Id);
+        BranchEditDto? GetEditBranche(byte Id);
+        Task<int> UpdateBranchAsync(byte Id, BranchEditDto branchRequest);  
         Task<int> DeleteBranchAsync(byte Id);
     }
 }

@@ -1,8 +1,12 @@
 using Exam_MVC_App.Data;
+using Exam_MVC_App.Mappings;
 using Exam_MVC_App.Services.BranchServices;
 using Exam_MVC_App.Services.CourseServices;
 using Exam_MVC_App.Services.InstructorDetailsServices;
 using Exam_MVC_App.Services.InstructorServices;
+using Exam_MVC_App.Services.QuestionChoiseServies;
+using Exam_MVC_App.Services.QuestionRightAnswerServices;
+using Exam_MVC_App.Services.QuestionsServices;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,8 +23,10 @@ builder.Services.AddScoped<IBranchService, BranchService>();
 builder.Services.AddScoped<IInstructorService, InstructorService>();
 builder.Services.AddScoped<IInstructorDetailsService, InstructorDetailsService>();
 builder.Services.AddScoped<ICourseServices, CourseServices>();
-
-
+builder.Services.AddScoped<IQuestionsServise, QuestionsService>();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+builder.Services.AddScoped<IQusestionChoiseServece, QusestionChoiseServie>();
+builder.Services.AddScoped<IQuestionRightAnswerservice, QuestionRightAnswerService>();
 
 
 
