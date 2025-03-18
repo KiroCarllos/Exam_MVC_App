@@ -1,0 +1,65 @@
+﻿@model List<User>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>All Instructors</h1>
+        <a href="@Url.Action("Add", "Instructor")" class="btn btn-primary">Add</a>
+    </div>
+
+    <table class="table table-light table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Status</th>
+                <th>Salary</th>
+                <th>Branch</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var Instructor in Model)
+            {
+                <tr>
+                    <td>@Instructor.Id</td>
+                    <td>@Instructor.Fname @Instructor.Lname</td>
+                    <td>@Instructor.Role</td>
+                    <td>@Instructor.Phone</td>
+                    <td>@Instructor.Email</td>
+                    <td>@Instructor.Gender</td>
+                    <td>
+                        @(Instructor.DateOfBirth != null ?
+                            (DateTime.Now.Year - Instructor.DateOfBirth.Value.Year -
+                            (DateTime.Now.DayOfYear < Instructor.DateOfBirth.Value.DayOfYear ? 1 : 0))
+                            : "N/A")
+                    </td>
+                    <td>@Instructor.Status</td>
+                    <td>@Instructor.Salary</td>
+                    <td>@(Instructor.Branch != null ? Instructor.Branch.Name : "No Branch")</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Instructor", new { Id = Instructor.Id })" class="btn btn-secondary">Edit</a>
+                        <a href="@Url.Action("Details", "InstructorDetails", new { Id = Instructor.Id })" class="btn btn-info">Details</a>
+                        <a href="@Url.Action("Delete", "Instructor", new { Id = Instructor.Id })"
+                           class="btn btn-danger"
+                           onclick="return confirm('Are you sure you want to delete this instructor?');">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

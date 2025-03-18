@@ -23,7 +23,7 @@ public partial class AppDBContext : DbContext
 
     public virtual DbSet<Exam_Question> Exam_Questions { get; set; }
 
-    public virtual DbSet<Instructor_Detial> Instructor_Detials { get; set; }
+    public virtual DbSet<Instructor_Detials> Instructor_Detials { get; set; }
 
     public virtual DbSet<Question> Questions { get; set; }
 
@@ -40,6 +40,7 @@ public partial class AppDBContext : DbContext
     public virtual DbSet<Track> Tracks { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+    public DbSet<Instructor_Detials> Instructor_Detial { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -74,7 +75,7 @@ public partial class AppDBContext : DbContext
                 .HasConstraintName("FK_Exam_Question_Question");
         });
 
-        modelBuilder.Entity<Instructor_Detial>(entity =>
+        modelBuilder.Entity<Instructor_Detials>(entity =>
         {
             entity.HasOne(d => d.Course).WithMany(p => p.Instructor_Detials)
                 .OnDelete(DeleteBehavior.ClientSetNull)

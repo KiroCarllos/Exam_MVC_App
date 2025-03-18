@@ -1,5 +1,7 @@
 using Exam_MVC_App.Data;
 using Exam_MVC_App.Services.BranchServices;
+using Exam_MVC_App.Services.CourseServices;
+using Exam_MVC_App.Services.InstructorDetailsServices;
 using Exam_MVC_App.Services.InstructorServices;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +16,11 @@ builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IAppDBContextProcedures, AppDBContextProcedures>();
 builder.Services.AddScoped<IBranchService, BranchService>();
-builder.Services.AddScoped<IInstructorServices, InstructorServices>();
+builder.Services.AddScoped<IInstructorService, InstructorService>();
+builder.Services.AddScoped<IInstructorDetailsService, InstructorDetailsService>();
+builder.Services.AddScoped<ICourseServices, CourseServices>();
+
+
 
 
 

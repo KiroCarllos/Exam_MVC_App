@@ -26,7 +26,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Kiro"
       }
-    },   
+    },
     "Mahmoud": {
       "commandName": "Project",
       "dotnetRunMessages": true,
@@ -34,6 +34,15 @@
       "applicationUrl": "http://localhost:5182",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Mahmoud"
+      }
+    },
+    "AsmaaMohamed": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:5182",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "AsmaaMohamed"
       }
     },
     "https": {

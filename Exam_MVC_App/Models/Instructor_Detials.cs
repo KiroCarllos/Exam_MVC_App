@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Exam_MVC_App.Models;
 
-public partial class Instructor_Detial
+public partial class Instructor_Detials
 {
     [Key]
     public int Id { get; set; }
