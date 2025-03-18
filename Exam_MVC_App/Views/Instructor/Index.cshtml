@@ -18,10 +18,8 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Role</th>
                 <th>Phone</th>
                 <th>Email</th>
-                <th>Gender</th>
                 <th>Age</th>
                 <th>Status</th>
                 <th>Salary</th>
@@ -36,10 +34,8 @@
                 <tr>
                     <td>@Instructor.Id</td>
                     <td>@Instructor.Fname @Instructor.Lname</td>
-                    <td>@Instructor.Role</td>
                     <td>@Instructor.Phone</td>
                     <td>@Instructor.Email</td>
-                    <td>@Instructor.Gender</td>
                     <td>
                         @(Instructor.DateOfBirth != null ?
                             (DateTime.Now.Year - Instructor.DateOfBirth.Value.Year -
@@ -51,7 +47,7 @@
                     <td>@(Instructor.Branch != null ? Instructor.Branch.Name : "No Branch")</td>
                     <td>
                         <a href="@Url.Action("Edit", "Instructor", new { Id = Instructor.Id })" class="btn btn-secondary">Edit</a>
-                        <a href="@Url.Action("Details", "InstructorDetails", new { Id = Instructor.Id })" class="btn btn-info">Details</a>
+                        <a href="/Instructor/Details/@Instructor.Id" class="btn btn-info">Details</a>
                         <a href="@Url.Action("Delete", "Instructor", new { Id = Instructor.Id })"
                            class="btn btn-danger"
                            onclick="return confirm('Are you sure you want to delete this instructor?');">

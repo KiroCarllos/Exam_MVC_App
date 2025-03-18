@@ -201,7 +201,8 @@
                 </li>
 
                 <li>
-                    <a href="/Branch/Index" class="nav-link @(Context.Request.Path == "/Branch/Index" ? "active" : "text-white")">
+                    <a href="/Branch/Index" 
+                       class="nav-link @(Context.Request.Path.ToString().Contains("/Branch", StringComparison.OrdinalIgnoreCase) ? "active" : "text-white")">
                         <svg class="bi pe-none me-2" width="16" height="16">
                             <use xlink:href="#people-circle" />
                         </svg>
@@ -209,7 +210,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/Instructor/Index" class="nav-link @(Context.Request.Path == "/Instructor/Index" ? "active" : "text-white")">
+                    <a href="/Instructor/Index" class="nav-link @(Context.Request.Path.ToString().Contains("/Instructor", StringComparison.OrdinalIgnoreCase) ? "active" : "text-white")">
                         <svg class="bi pe-none me-2" width="16" height="16">
                             <use xlink:href="#people-circle" />
                         </svg>

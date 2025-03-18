@@ -13,6 +13,13 @@ namespace Exam_MVC_App.Controllers
         }
 
         [HttpGet]
+        public IActionResult Details(byte Id)
+        {
+            var instructor = _instructorServices.GetInstructorById(Id);
+            return View(instructor);
+        }
+
+        [HttpGet]
         public IActionResult Edit(byte Id)
         {
             var instructor = _instructorServices.GetInstructorById(Id);

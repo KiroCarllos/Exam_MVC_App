@@ -14,14 +14,6 @@ namespace Exam_MVC_App.Controllers
             _instructorDetailsService = instructorDetailsService;
         }
 
-        // Display list of all instructor details
-        public IActionResult Index()
-        {
-            var instructorDetails = _instructorDetailsService.GetAllInstructorDetails();
-            return View(instructorDetails);
-        }
-
-        // Display details of a specific instructor
         public IActionResult Details(int id)
         {
             var instructorDetail = _instructorDetailsService.GetInstructorDetailsById(id);
@@ -32,30 +24,25 @@ namespace Exam_MVC_App.Controllers
             }
             return View(instructorDetail);
         }
-
-        // Delete instructor details
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int Id)
         {
             try
             {
-                var result = await _instructorDetailsService.DeleteInstructorDetailAsync(id);
+                var result = await _instructorDetailsService.DeleteInstructorDetailAsync(Id);
                 TempData["Message"] = result == 1 ? "Instructor Details Deleted Successfully" : "Instructor Details Not Deleted";
             }
             catch
             {
                 TempData["Message"] = "Error deleting instructor details. Ensure related data is removed first.";
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Instructor", Id);
         }
 
-        // Show Add Instructor Details page
         public IActionResult Add()
         {
             ViewBag.Instructors = _instructorDetailsService.GetAllInstructorDetails(); // Ensure this returns a valid list
             return View();
         }
-
-        // Insert new Instructor Details
         [HttpPost]
         public async Task<IActionResult> Insert(Instructor_Detials newInstructorDetail)
         {
@@ -68,7 +55,7 @@ namespace Exam_MVC_App.Controllers
             {
                 TempData["Message"] = ex.Message;
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Instructor", new { Id = newInstructorDetail.User_Id });
         }
     }
 }

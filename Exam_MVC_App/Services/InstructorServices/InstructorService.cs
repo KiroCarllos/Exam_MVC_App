@@ -18,7 +18,14 @@ namespace Exam_MVC_App.Services.InstructorServices
 
         public User? GetInstructorById(int Id)
         {
-            return _db.Users.Where(u => u.Id == Id).FirstOrDefault();
+            return _db.Users
+                .Where(u => u.Id == Id)
+                .Include(u => u.Branch)
+                .Include(u => u.Instructor_Detials) 
+                    .ThenInclude(d => d.Track)
+                .Include(u => u.Instructor_Detials)
+                    .ThenInclude(t => t.Course)
+                .FirstOrDefault();
         }
 
         public Task<int> UpdateInstructorAsync(int Id, User UserRequest)
