@@ -1,0 +1,31 @@
+﻿@model Course
+
+@if (Model != null)
+{
+
+
+    ViewData["Title"] = "Edit Cource";
+
+    <h1>Edit Track</h1>
+    <form method="POST" action="/Cource/Update/@Model.Id">
+        <input type="hidden" name="_method" value="PUT" />
+        <input type="hidden" asp-for="Id" value="@Model.Id" class="form-control" />
+
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Hours"></label>
+            <input asp-for="Hours" class="form-control" />
+        </div>
+
+        <br />
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+}
+else
+{
+    <h1>cource not found</h1>
+}

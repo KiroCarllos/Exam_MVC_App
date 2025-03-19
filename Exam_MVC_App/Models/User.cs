@@ -58,7 +58,7 @@ public partial class User
     public virtual Branch? Branch { get; set; }
 
     [InverseProperty("User")]
-    public virtual ICollection<Instructor_Detial> Instructor_Detials { get; set; } = new List<Instructor_Detial>();
+    public virtual ICollection<Instructor_Detials> Instructor_Detials { get; set; } = new List<Instructor_Detials>();
 
     [InverseProperty("User")]
     public virtual ICollection<Student_Answer> Student_Answers { get; set; } = new List<Student_Answer>();
