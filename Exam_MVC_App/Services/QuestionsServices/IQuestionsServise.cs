@@ -8,5 +8,6 @@ namespace Exam_MVC_App.Services.QuestionsServices
         Question? GetQuestionById(byte Id);
         Task<int> UpdateQuestionAsync(byte Id, Question questionRequest);
         Task<int> DeleteQuestionAsync(byte Id);
+        Task<int> AddQuestionAsync(Question questionRequest);
     }
 }

@@ -24,8 +24,12 @@ namespace Exam_MVC_App.Controllers
         [Route("Questions/Update/{Id}")]
         public async Task<IActionResult> Update(byte Id, Question questionRequest)
         {
-            var result = await _QuestionServices.UpdateQuestionAsync(Id, questionRequest);
-            TempData["Message"] = result == 1 ? "Question Updated Successfully" : "Question Not updated";
+            try
+            {
+                    var result = await _QuestionServices.UpdateQuestionAsync(Id, questionRequest);
+                                TempData["Message"] = result == 1 ? "Question Updated Successfully" : $"{result}";
+            }
+            catch (Exception E) { TempData["Message"] = E.Message; }
             return RedirectToAction("Index");
         }
         public async Task<IActionResult> Delete(byte Id)
@@ -34,5 +38,20 @@ namespace Exam_MVC_App.Controllers
             TempData["Message"] = result == 1 ? "Question Deleted Successfully" : "To Delete Question Must Delete Ref tables First";
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            return View();
+        }
+        [HttpPost]
+        [Route("Questions/AddNew")]
+        public async Task<IActionResult> AddNew(Question qusestion)
+        {
+            var result = await _QuestionServices.AddQuestionAsync(qusestion);
+            TempData["Message"] = result == 1 ? "answer Added Successfully" : "answer Not Added";
+            return RedirectToAction("Index");
+
+        }
+
     }
 }

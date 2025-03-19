@@ -33,5 +33,20 @@ namespace Exam_MVC_App.Controllers
             TempData["Message"] = result == 1 ? "answer Deleted Successfully" : "can not deleted";
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+        
+            return View();
+        }
+        [HttpPost]
+        [Route ("QusestionChoise/AddNew")]
+        public async Task<IActionResult>AddNew(Question_Choice qusestionChoise)
+        {
+            var result = await _QuestionChoiseServices.AddQuestionChoiseAsync(qusestionChoise);
+            TempData["Message"] = result == 1 ? "answer Added Successfully" : "answer Not Added";
+            return RedirectToAction("Index");
+
+        }
     }
 }

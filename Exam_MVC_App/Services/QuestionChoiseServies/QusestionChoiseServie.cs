@@ -25,5 +25,12 @@ namespace Exam_MVC_App.Services.QuestionChoiseServies
                 qusestionChoise.Choice_Type,
                 qusestionChoise.Question_Id);
         }
+        public Task<int> AddQuestionChoiseAsync(Question_Choice qusestionChoise)
+        {
+            return _sp.sp_add_choiceAsync(
+                qusestionChoise.Choice,
+                qusestionChoise.Choice_Type,
+                qusestionChoise.Question_Id);
+        }
     }
 }

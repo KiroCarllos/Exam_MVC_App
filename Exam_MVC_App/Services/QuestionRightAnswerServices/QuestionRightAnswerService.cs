@@ -25,5 +25,12 @@ namespace Exam_MVC_App.Services.QuestionRightAnswerServices
         public Task<int> UpdateQuestionRightAnswerAsync(byte Id, Question_Right_Answer questionRightAnswerRequest)
         {
             return _sp.sp_UpdateRightAnswerAsync(Id, questionRightAnswerRequest.Right_Answer, questionRightAnswerRequest.Question_Id);
-        }       }
+        }
+        public Task<int> AddQuestionRightAnswerAsync(Question_Right_Answer qusestionRightChoise)
+        {
+            return _sp.sp_InsertRightAnswerAsync(qusestionRightChoise.Right_Answer, qusestionRightChoise.Question_Id);
+                
+        }
+
+    }
 }

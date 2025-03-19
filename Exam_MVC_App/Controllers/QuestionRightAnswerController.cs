@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Exam_MVC_App.Controllers
 {
-    public class QuestionRightAnswer (IQuestionRightAnswerservice _questionRightAnswerservice, IQuestionsServise _question) : Controller
+    public class QuestionRightAnswerController (IQuestionRightAnswerservice _questionRightAnswerservice, IQuestionsServise _question) : Controller
     {
         public IActionResult Index()
         {
@@ -34,6 +34,21 @@ namespace Exam_MVC_App.Controllers
             TempData["Message"] = result == 1 ? "answer Deleted Successfully" : "can not deleted";
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            return View();
+        }
+        [HttpPost]
+        [Route("QuestionRightAnswer/AddNew")]
+        public async Task<IActionResult> AddNew(Question_Right_Answer qusestionRightChoise)
+        {
+            var result = await _questionRightAnswerservice.AddQuestionRightAnswerAsync(qusestionRightChoise);
+            TempData["Message"] = result == 1 ? "answer Added Successfully" : "answer Not Added";
+            return RedirectToAction("Index");
+
+        }
+
 
 
     }

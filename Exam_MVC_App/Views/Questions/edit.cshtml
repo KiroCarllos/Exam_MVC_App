@@ -8,15 +8,15 @@
     ViewData["Title"] = "Edit Questions";
 
     <h1>Edit Question</h1>
-    <form method="POST" action="/Questions/Update/@Model">
+    <form method="POST" action="/Questions/Update/@Model.Id">
         <input type="hidden" name="_method" value="PUT" />
         <div class="form-group">
             <label asp-for="Name">Qusetion Name</label>
-            <input asp-for="Course" value="@Model.Name" class="form-control" />
+            <input asp-for="Name" value="@Model.Name" class="form-control" />
         </div>
 
         <div class="form-group">
-            <label asp-for="Name">QusetionAnswerOptions</label>
+            <label asp-for="Type_Multi_Single">QusetionAnswerOptions</label>
 
 
             <select  asp-for="Type_Multi_Single" class="form-control" >
@@ -28,9 +28,11 @@
                 </option>
                </select/>
         </div> 
+
+
             <div class="form-group">
-            <label asp-for="Name">Qusetion Type</label>
-        <select  asp-for="Type_Multi_Single"  class="form-control"  >
+            <label asp-for="Type">Qusetion Type</label>
+        <select  asp-for="Type"  class="form-control"  >
                 <option value="MCQ">
                    MCQ 
                 </option>
@@ -42,10 +44,10 @@
 
         
         <div class="form-group">
-            <label asp-for="Name">Type Of Defficult</label>
+            <label asp-for="Type_Difficult">Type Of Defficult</label>
 
 
-              <select  asp-for="Type_Multi_Single"  class="form-control" selected ="@Model.Type_Difficult" >
+              <select  asp-for="Type_Difficult"  class="form-control" selected ="@Model.Type_Difficult" >
                 <option value="Easy">
                    Easy 
                 </option>
@@ -62,12 +64,16 @@
 
         </div>
         
+             <div class="form-group">
+            <label asp-for="Mark">mark</label>
+            <input asp-for="Mark" value="@Model.Mark" class="form-control" />
+        </div>
         
     
                 <div class="form-group">
-            <label asp-for="Course.Name">Course</label>
+            <label asp-for="Course_Id">Course</label>
 
-                        <input asp-for="Course" value="@Model.Course" class="form-control" />
+                        <input asp-for="Course_Id" value="@Model.Course" class="form-control" />
 
         </div>
 

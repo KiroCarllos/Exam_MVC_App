@@ -8,9 +8,14 @@
 	</div>
 }
 <div class="container">
-	<h1>
-		All RightAnswer
-	</h1>
+	<div class="d-flex justify-content-lg-between">
+			<h1>
+				All RightAnswer
+			</h1>
+		<a href="/QuestionRightAnswer/Add" type="button" class="btn btn-dark ">ADD</a>
+	</div>
+	
+
 	<table class="table table-light table-hover">
 		<thead>
 			<th>#</th>
@@ -31,13 +36,19 @@
 					</td>
 
 					<td>
-						<a href="/QuestionRightAnswer/edit/@right.Id" class="btn btn-secondary">Edit</a>
+						<a href="/QuestionRightAnswer/edit/@right.Id" class="btn btn-secondary"><i class="bi bi-pencil-fill"></i></a>
 
 
 						<a href="/QuestionRightAnswer/Delete/@right.Id"
 						   class="btn btn-danger"
 						   onclick="return confirm('Are you sure you want to delete this Question?');">
-							Delete
+							<i class="bi bi-trash"></i>
+						</a>
+
+						<a href="/QuestionRightAnswer//@right.Id"
+						   class="btn btn-primary"
+						   onclick="return confirm('Are you sure you want to delete this Question?');">
+							<i class="bi bi-eye"></i>
 						</a>
 					</td>
 				</tr>

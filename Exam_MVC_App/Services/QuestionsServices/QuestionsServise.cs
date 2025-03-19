@@ -47,6 +47,16 @@ namespace Exam_MVC_App.Services.QuestionsServices
                Id);
               
         }
+        public async Task<int> AddQuestionAsync(Question qusRequest)
+        {
+            return await _sp.sp_InsertQuestionAsync(
+                qusRequest.Name,
+                qusRequest.Type,
+                qusRequest.Type_Difficult,
+                qusRequest.Mark,
+                qusRequest.Type_Multi_Single,
+                qusRequest.Course_Id);
+        }
 
 
     }

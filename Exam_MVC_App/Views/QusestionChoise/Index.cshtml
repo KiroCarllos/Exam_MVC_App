@@ -9,9 +9,14 @@
     </div>
 }
 <div class="container">
-<h1>
-        All Choises
-</h1>
+	<div class="d-flex justify-content-between">
+		<h1>
+			All Choises
+		</h1>
+		<a href="/QusestionChoise/Add/@Model" class="btn btn-dark ">ADD</a>
+
+	</div>
+
 	<table class="table table-light table-hover">
 		<thead>
 		<th>#</th>
@@ -32,13 +37,19 @@
 					@* 	@(question.Course != null ? $"{question.Course.Name} " : "No course Assigned") *@
 					@* </td> *@
 					<td>
-						<a href="/QusestionChoise/edit/@choise.Id" class="btn btn-secondary">Edit</a>
+						<a href="/QusestionChoise/edit/@choise.Id" class="btn btn-secondary"><i class="bi bi-pencil-fill"></i></a>
 
 
 						<a href="/QusestionChoise/Delete/@choise.Id"
 					   class="btn btn-danger"
 					   onclick="return confirm('Are you sure you want to delete this Question?');">
-						Delete </a>
+							<i class="bi bi-trash"></i>
+						</a>
+						<a href="/QuestionRightAnswer//@choise.Id"
+						   class="btn btn-primary"
+						   onclick="return confirm('Are you sure you want to delete this Question?');">
+							<i class="bi bi-eye"></i>
+						</a>
 					</td>
 				</tr>
 			 }

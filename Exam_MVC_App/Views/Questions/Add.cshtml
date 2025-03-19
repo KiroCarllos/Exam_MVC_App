@@ -1,0 +1,94 @@
+﻿@model Question
+
+
+<h1>Create Cource</h1>
+
+<form method="POST" action="/Questions/AddNew">
+    <div class="form-horizontal">
+        <h4>Track</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        
+        <div class="form-group">
+            <label asp-for="Type_Multi_Single">QusetionAnswerOptions</label>
+
+
+            <select  asp-for="Type_Multi_Single" class="form-control" >
+                <option value="multi">
+                   multi 
+                </option>
+                 <option value="single">
+                   single 
+                </option>
+               </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Type">Qusetion Type</label>
+            <select asp-for="Type" class="form-control">
+                <option value="MCQ">
+                    MCQ
+                </option>
+                <option value="  True Or False
+">
+                    True Or False
+                </option>
+            </select>
+        </div>
+
+          <div class="form-group">
+            <label asp-for="Type_Difficult">Type Of Defficult</label>
+
+              <select  asp-for="Type_Difficult"  class="form-control"  >
+                <option value="Easy">
+                   Easy 
+                </option>
+                   <option value="Normal">
+
+                  Normal 
+                </option>
+                 <option value="Hard">
+
+                  Hard 
+                </option>
+               </select> 
+   
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Mark">mark</label>
+            <input asp-for="Mark"  class="form-control" />
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="Course_Id">Course</label>
+
+            <input asp-for="Course_Id" class="form-control" />
+
+        </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        

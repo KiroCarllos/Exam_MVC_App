@@ -8,13 +8,12 @@
     ViewData["Title"] = "Edit Right_Answer";
 
     <h1>Edit Right Answer </h1>
-    <form method="POST" action="/QuestionRightAnswer/Update/@Model">
+    <form method="POST" action="/QuestionRightAnswer/Update/@Model.Id">
         <input type="hidden" name="_method" value="PUT" />
         <div class="form-group">
             <label asp-for="Right_Answer">Answer </label>
             <input asp-for="Right_Answer" value="@Model.Right_Answer" class="form-control" />
         </div>
-
 
         <div class="form-group">
             <label asp-for="Question_Id">quetion</label>
@@ -37,7 +36,7 @@
 }
 else
 {
-    <h1>Branch not found</h1>
+    <h1> not found</h1>
 }
 
 

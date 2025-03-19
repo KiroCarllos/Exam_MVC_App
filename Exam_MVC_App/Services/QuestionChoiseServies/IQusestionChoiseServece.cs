@@ -8,6 +8,7 @@ namespace Exam_MVC_App.Services.QuestionChoiseServies
         Question_Choice? GetQuestionChoiseById(byte Id);
         Task<int> UpdateQuestionChoiseAsync(byte Id, Question_Choice qusestionChoise);
         Task<int> DeleteQuestionChoiseAsync(byte Id);
+        Task<int> AddQuestionChoiseAsync(Question_Choice qusestionChoise);
     }
 }
 
