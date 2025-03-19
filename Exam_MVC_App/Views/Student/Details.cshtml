@@ -1,0 +1,89 @@
+﻿@model User
+
+<div class="container mt-3">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4 pt-3">
+        <a href="javascript:history.back()" class="btn btn-light">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+
+        <h3 class="m-0 flex-grow-1 text-center">Student Details</h3>
+
+        <a href="@Url.Action("Edit", "Student", new { Id = Model.Id })">
+            <i class="fas fa-edit text-dark" style="font-size: 1.3rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="p-4 border rounded shadow-sm bg-light">
+        <div class="row mb-3">
+            <div class="col-md-6"><strong>Name:</strong> @Model.Fname @Model.Lname</div>
+            <div class="col-md-6"><strong>Email:</strong> @Model.Email</div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6"><strong>Phone:</strong> @Model.Phone</div>
+            <div class="col-md-6"><strong>Branch:</strong> @(Model.Branch?.Name ?? "No Branch")</div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6"><strong>Gender:</strong> @Model.Gender</div>
+            <div class="col-md-6"><strong>Status:</strong> @Model.Status</div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6"><strong>Date of Birth:</strong> @(Model.DateOfBirth?.ToString("yyyy-MM-dd") ?? "N/A")</div>
+            <div class="col-md-6">
+                <strong>Age:</strong>
+                @(Model.DateOfBirth != null
+                    ? (DateTime.Now.Year - Model.DateOfBirth.Value.Year -
+                    (DateTime.Now.DayOfYear < Model.DateOfBirth.Value.DayOfYear ? 1 : 0))
+                    : "N/A")
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6"><strong>Salary:</strong> @(Model.Salary?.ToString() ?? "N/A")</div>
+            <div class="col-md-6"><strong>Role:</strong> @Model.Role</div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <strong>Track:</strong>
+                @(Model.Student_Detials != null && Model.Student_Detials.Any() ?
+                    Model.Student_Detials.First().Track?.Name ?? "N/A" : "N/A")
+            </div>
+        </div>
+        <br />
+        <div class="d-flex align-items-start justify-content-between mt-2">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered text-center align-middle shadow-sm" style="width: 600px;">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="px-3">#</th>
+                            <th class="px-4">Course Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var (sc, index) in Model.Stundent_Courses.Select((sc, i) => (sc, i + 1)))
+                        {
+                            <tr>
+                                <td>@index</td>
+                                <td>@sc.Course.Name</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <a href="@Url.Action("Index", "StudentCourses", new { Id = Model.Id })"
+               class="btn btn-dark ms-3">
+                Edit Courses
+            </a>
+        </div>
+    </div>
+
+
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">

@@ -1,0 +1,94 @@
+﻿@model User
+
+@if (Model != null)
+{
+    ViewData["Title"] = "Edit Instructor";
+
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Edit Instructor</h1>
+
+        <form method="POST" action="@Url.Action("Update", "Instructor", new { Id = Model.Id })" class="shadow-lg p-4 rounded bg-light">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="Fname" class="form-label fw-bold">First Name</label>
+                    <input asp-for="Fname" class="form-control" required />
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Lname" class="form-label fw-bold">Last Name</label>
+                    <input asp-for="Lname" class="form-control" required />
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Role" class="form-label fw-bold">Role</label>
+                    <input asp-for="Role" class="form-control" value="Instructor" readonly />
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Phone" class="form-label fw-bold">Phone</label>
+                    <input asp-for="Phone" class="form-control" required />
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Email" class="form-label fw-bold">Email</label>
+                    <input asp-for="Email" class="form-control" required type="email" />
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Password" class="form-label fw-bold">Password</label>
+                    <input asp-for="Password" class="form-control" type="password" value="@Model.Password" readonly />
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Gender" class="form-label fw-bold">Gender</label>
+                    <select asp-for="Gender" class="form-select">
+                        <option value="Male" selected="@(Model.Gender == "Male" ? "selected" : null)">Male</option>
+                        <option value="Female" selected="@(Model.Gender == "Female" ? "selected" : null)">Female</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="DateOfBirth" class="form-label fw-bold">Date of Birth</label>
+                    <input asp-for="DateOfBirth" class="form-control" type="date" required />
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Status" class="form-label fw-bold">Status</label>
+                    <select asp-for="Status" class="form-select">
+                        <option value="Active" selected="@(Model.Status == "Active" ? "selected" : null)">Active</option>
+                        <option value="Inactive" selected="@(Model.Status == "Pending" ? "selected" : null)">Inactive</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Salary" class="form-label fw-bold">Salary</label>
+                    <input asp-for="Salary" class="form-control" type="number" required />
+                </div>
+
+                <div class="col-md-12">
+                    <label asp-for="Branch_Id" class="form-label fw-bold">Branch</label>
+                    <select asp-for="Branch_Id" class="form-select">
+                        @foreach (var branch in ViewBag.Branches)
+                        {
+                            <option value="@branch.Id" selected="@(Model.Branch_Id == branch.Id ? "selected" : null)">
+                                @branch.Name
+                            </option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary px-4">Save</button>
+            </div>
+        </form>
+    </div>
+}
+else
+{
+    <div class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+        <h1>Instructor not found</h1>
+    </div>
+}

@@ -1,0 +1,94 @@
+﻿@model List<Stundent_Course>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center py-3 bg-white rounded">
+        <a href="javascript:history.back()" class="btn btn-light">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h3 class="m-0 flex-grow-1 text-center fw-bold">Student Courses</h3>
+        <button class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addCourseModal">
+            <i class="fas fa-plus me-2"></i> Add Course
+        </button>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-light table-hover mt-3 shadow-sm border rounded">
+            <thead class="table-dark">
+                <tr>
+                    <th class="px-3">#</th>
+                    <th class="px-4">Course Name</th>
+                    <th class="px-4">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count > 0)
+                {
+                    @foreach (var course in Model)
+                    {
+                        <tr>
+                            <td>@course.Course_Id</td>
+                            <td>@course.Course.Name</td>
+                            <td>
+                                <form asp-action="Delete" asp-controller="StudentCourses" method="get">
+                                    <input type="hidden" name="id" value="@course.Id" />
+                                    <input type="hidden" name="studentId" value="@ViewBag.StudentId" />
+                                    <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
+                                        <i class="fas fa-trash-alt text-danger ms-5 "></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">No courses found for this student.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+
+<div class="modal fade" id="addCourseModal" tabindex="-1" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCourseModalLabel">Add Course</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form asp-action="Create" asp-controller="StudentCourses" method="get">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="courseSelect" class="form-label">Select Course</label>
+                        <select class="form-select" id="courseSelect" name="Course_Id" required>
+                            <option value="">-- Select a Course --</option>
+                            @foreach (var course in ViewBag.Courses)
+                            {
+                                <option value="@course.Id">@course.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <input type="hidden" name="User_Id" value="@ViewBag.StudentId" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Course</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">

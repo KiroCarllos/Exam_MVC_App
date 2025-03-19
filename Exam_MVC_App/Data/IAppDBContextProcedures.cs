@@ -19,11 +19,11 @@ namespace Exam_MVC_App.Data
         Task<int> sp_AddInstructor_DetialsAsync(int? id, int? user_id, byte? track_id, int? course_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_AddStudent_DetailsAsync(int? user_id, byte? track_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_AddStudent_DetialsAsync(int? id, int? user_id, byte? track_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
-        Task<int> sp_AddUserRowAsync(int? id, string fname, string lname, string role, string phone, string email, string pass, string gender, DateOnly? dateofBirth, string satus, decimal? salary, byte? branch, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
+        Task<int> sp_AddUserRowAsync(string fname, string lname, string role, string phone, string email, string pass, string gender, DateOnly? dateofBirth, string satus, decimal? salary, byte? branch, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<List<sp_correct_examResult>> sp_correct_examAsync(int? examid, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_createbranchAsync(string b_name, int? b_mg_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_createcourceAsync(string c_name, byte? c_hours, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
-        Task<List<sp_createstudent_coursesResult>> sp_createstudent_coursesAsync(int? sc_cource_id, int? sc_user_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
+        Task<int> sp_createstudent_coursesAsync(int? sc_cource_id, int? sc_user_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_createtrackAsync(int? t_mng_id, string t_name, int? t_hours, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_delete_choiceAsync(int? id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_delete_examAsync(int? id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
@@ -35,7 +35,7 @@ namespace Exam_MVC_App.Data
         Task<int> sp_deletecourceAsync(int? c_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_DeleteQuestionAsync(int? questionId, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_DeleteRightAnswerAsync(int? rightAnswersId, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
-        Task<List<sp_deletestudent_coursesResult>> sp_deletestudent_coursesAsync(int? sc_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
+        Task<int> sp_deletestudent_coursesAsync(int? sc_id, CancellationToken cancellationToken = default);
         Task<int> sp_deletetrackAsync(int? t_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_DeleteUserAsync(int? id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<int> sp_Edit_Instructor_DetailsAsync(int? id, int? user_id, byte? track_id, int? course_id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);

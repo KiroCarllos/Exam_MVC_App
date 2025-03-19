@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Exam_MVC_App.Controllers
 {
-    public class BranchController(IBranchService _branchServices,IInstructorServices _instructorService) : Controller
+    public class BranchController(IBranchService _branchServices, IInstructorServices _instructorService) : Controller
     {
         public IActionResult Index()
         {
@@ -20,7 +20,7 @@ namespace Exam_MVC_App.Controllers
         }
         [HttpPost]
         [Route("Branch/Update/{Id}")]
-        public async Task<IActionResult> Update(byte Id,Branch branchRequest)
+        public async Task<IActionResult> Update(byte Id, Branch branchRequest)
         {
             var result = await _branchServices.UpdateBranchAsync(Id, branchRequest);
             TempData["Message"] = result == 1 ? "Branch Updated Successfully" : "Branch Not Updated";
@@ -29,7 +29,7 @@ namespace Exam_MVC_App.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(byte Id)
         {
-            var result =await _branchServices.DeleteBranchAsync(Id);
+            var result = await _branchServices.DeleteBranchAsync(Id);
             TempData["Message"] = result == 1 ? "Branch Deleted Successfully" : "Branch Not Deleted";
             return RedirectToAction("Index");
         }

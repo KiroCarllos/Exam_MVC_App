@@ -1,0 +1,190 @@
+﻿@model Exam_MVC_App.Models.User
+
+@{
+    ViewData["Title"] = "Add Student";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<div class="container mt-4">
+    <h3 class="d-flex align-items-center justify-content-center mb-4">
+        <a href="javascript:history.back()" class="btn btn-light me-3">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <span class="flex-grow-1 text-center">New Student</span>
+    </h3>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+
+    <form method="POST" action="@Url.Action("Insert", "Student")" class="shadow-lg p-4 rounded bg-light">
+        <div class="row g-3">
+            <!-- User Fields -->
+            <div class="col-md-6">
+                <label asp-for="Fname" class="form-label fw-bold">First Name</label>
+                <input asp-for="Fname" class="form-control" required />
+                <span asp-validation-for="Fname" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Lname" class="form-label fw-bold">Last Name</label>
+                <input asp-for="Lname" class="form-control" required />
+                <span asp-validation-for="Lname" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Role" class="form-label fw-bold">Role</label>
+                <input asp-for="Role" class="form-control" value="Student" readonly />
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Phone" class="form-label fw-bold">Phone</label>
+                <input asp-for="Phone" class="form-control" required />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Email" class="form-label fw-bold">Email</label>
+                <input asp-for="Email" class="form-control" required type="email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Password" class="form-label fw-bold">Password</label>
+                <input asp-for="Password" class="form-control" type="password" required />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Gender" class="form-label fw-bold">Gender</label>
+                <select asp-for="Gender" class="form-select">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="DateOfBirth" class="form-label fw-bold">Date of Birth</label>
+                <input asp-for="DateOfBirth" class="form-control" type="date" required />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Status" class="form-label fw-bold">Status</label>
+                <select asp-for="Status" class="form-select">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Pending</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Salary" class="form-label fw-bold">Salary</label>
+                <input asp-for="Salary" class="form-control" type="number" required />
+                <span asp-validation-for="Salary" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-12">
+                <label asp-for="Branch_Id" class="form-label fw-bold">Branch</label>
+                <select asp-for="Branch_Id" class="form-select">
+                    @foreach (var branch in ViewBag.Branches)
+                    {
+                        <option value="@branch.Id">@branch.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="Branch_Id" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label for="Track" class="form-label fw-bold">Track</label>
+                <select id="Track" name="student_Detial.Track_Id" class="form-select" required>
+                    <option value="">Select a Track</option>
+                    @foreach (var track in ViewBag.Tracks)
+                    {
+                        <option value="@track.Id">@track.Name</option>
+                    }
+                </select>
+            </div>
+            <input type="hidden" name="student_Detial.User_Id" value="0" />
+
+            <div id="courses-container" class="col-md-12">
+                <label class="form-label fw-bold d-block">Courses</label>
+                <div class="course-group mb-2">
+                    <div class="d-flex align-items-center">
+                        <select name="Courses[0].Course_Id" class="form-select w-50">
+                            <option value="">Select a Course</option>
+                            @foreach (var course in ViewBag.Courses)
+                            {
+                                <option value="@course.Id">@course.Name</option>
+                            }
+                        </select>
+                        <i class="fas fa-trash-alt text-danger remove-course ms-2" style="cursor: pointer;"></i>
+                    </div>
+                    <input type="hidden" name="Courses[0].User_Id" value="0" />
+                </div>
+            </div>
+
+            <div class="col-md-12 text-end">
+                <button type="button" id="add-course" class="btn btn-secondary">+ Add Course</button>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary px-4 my-2">Add Student</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    const courses = @Html.Raw(Json.Serialize(ViewBag.Courses ?? new List<object>()));
+
+    document.getElementById("add-course").onclick = function () {
+        let index = document.querySelectorAll(".course-group").length;
+
+        let courseDiv = document.createElement("div");
+        courseDiv.classList.add("course-group", "mb-2", "d-flex", "align-items-center");
+
+        let courseOptions = courses.map(course =>
+            `<option value="${course.id}">${course.name}</option>`
+        ).join("");
+
+        courseDiv.innerHTML = `
+            <div class="d-flex align-items-center w-100">
+                <select name="Courses[${index}].Course_Id" class="form-select w-50">
+                    <option value="">Select a Course</option>
+                    ${courseOptions}
+                </select>
+                <input type="hidden" name="Courses[${index}].User_Id" value="0">
+                <i class="fas fa-trash-alt text-danger remove-course ms-2" style="cursor: pointer;"></i>
+            </div>
+        `;
+
+        document.getElementById("courses-container").appendChild(courseDiv);
+        document.querySelectorAll(".remove-course").forEach(icon => icon.style.display = "inline");
+    };
+
+    document.getElementById("courses-container").addEventListener("click", function (event) {
+        if (event.target.classList.contains("remove-course")) {
+            let courseGroups = document.querySelectorAll(".course-group");
+
+            if (courseGroups.length > 1) {
+                event.target.closest(".course-group").remove();
+            }
+
+            if (document.querySelectorAll(".course-group").length === 1) {
+                document.querySelector(".remove-course").style.display = "none";
+            }
+        }
+    });
+
+    window.onload = function () {
+        if (document.querySelectorAll(".course-group").length === 1) {
+            document.querySelector(".remove-course").style.display = "none";
+        }
+    };
+</script>
